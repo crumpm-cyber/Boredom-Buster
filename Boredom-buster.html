@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boredom Buster 🚀</title>
+  <style>
+    :root {
+      --bg: #0f0f1a;
+      --card: #1a1a2e;
+      --accent: #ff6b6b;
+      --accent2: #4ecdc4;
+      --accent3: #ffe66d;
+      --text: #f0f0f5;
+      --muted: #a0a0b0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 107, 107, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(78, 205, 196, 0.12) 0%, transparent 40%);
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      position: relative;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--accent3), #ffd93d);
+      color: #111;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      margin-top: 1.2rem;
+      box-shadow: 0 4px 15px rgba(255, 230, 109, 0.35);
+      transition: all 0.2s;
+    }
+
+    .download-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 230, 109, 0.5);
+    }
+
+    .download-btn:active {
+      transform: scale(0.98);
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tab-btn {
+      background: var(--card);
+      border: 2px solid transparent;
+      color: var(--text);
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent2);
+      transform: translateY(-2px);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--accent), #ff8e8e);
+      color: #111;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    }
+
+    .panel {
+      display: none;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      padding: 1.5rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 1.8rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    .big-text {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.5rem 0;
+      padding: 0 1rem;
+    }
+
+    button.action {
+      background: linear-gradient(135deg, var(--accent2), #3dbdb5);
+      color: #111;
+      border: none;
+      padding: 0.9rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+    }
+
+    button.action:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(78, 205, 196, 0.5);
+    }
+
+    button.action:active {
+      transform: scale(0.98);
+    }
+
+    .activity-result {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--accent3);
+    }
+
+    .eight-ball {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle at 30% 30%, #333, #111);
+      border-radius: 50%;
+      margin: 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .eight-ball:hover {
+      transform: scale(1.05);
+    }
+
+    .eight-ball::before {
+      content: '8';
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #fff;
+      opacity: 0.9;
+    }
+
+    .eight-ball.showing::before {
+      content: '';
+    }
+
+    .answer {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: #1a1a4a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 10px;
+      color: #aaf;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .eight-ball.showing .answer {
+      opacity: 1;
+    }
+
+    .wyr-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .wyr-btn {
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      color: var(--text);
+      padding: 1.2rem;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wyr-btn:hover {
+      background: rgba(255, 107, 107, 0.2);
+      transform: scale(1.03);
+    }
+
+    .wyr-btn.selected {
+      background: var(--accent);
+      color: #111;
+    }
+
+    .reaction-box {
+      width: 100%;
+      height: 220px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.1s;
+      user-select: none;
+      margin: 1rem 0;
+    }
+
+    .reaction-box.waiting {
+      background: #333;
+    }
+
+    .reaction-box.ready {
+      background: #e74c3c;
+    }
+
+    .reaction-box.go {
+      background: #2ecc71;
+    }
+
+    .reaction-result {
+      font-size: 1.3rem;
+      margin-top: 1rem;
+      color: var(--accent3);
+    }
+
+    #drawCanvas {
+      background: #fff;
+      border-radius: 12px;
+      cursor: crosshair;
+      touch-action: none;
+      width: 100%;
+      max-width: 500px;
+      height: 300px;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+
+    .draw-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .color-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .color-btn.active {
+      border-color: #fff;
+      transform: scale(1.15);
+    }
+
+    .tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .tool-box {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 1.2rem;
+      min-width: 140px;
+    }
+
+    .tool-result {
+      font-size: 2.5rem;
+      margin: 0.8rem 0;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .small-btn {
+      background: var(--accent);
+      color: #111;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 500px) {
+      .wyr-options {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Boredom Buster</h1>
+    <p class="subtitle">You're bored. We got you. Pick something fun ↓</p>
+    <button class="download-btn" onclick="downloadPage()">
+      ⬇️ Download this page
+    </button>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="activity">🎲 Activity</button>
+    <button class="tab-btn" data-tab="eightball">🎱 8-Ball</button>
+    <button class="tab-btn" data-tab="wyr">🤔 Would You Rather</button>
+    <button class="tab-btn" data-tab="reaction">⚡ Reaction</button>
+    <button class="tab-btn" data-tab="draw">🎨 Draw</button>
+    <button class="tab-btn" data-tab="tools">🪙 Tools</button>
+    <button class="tab-btn" data-tab="joke">😂 Joke</button>
+  </div>
+
+  <div class="panel active" id="activity">
+    <div class="card">
+      <h2>Random Activity</h2>
+      <p style="color:var(--muted);margin-top:0.5rem">Click for a spontaneous thing to do</p>
+      <div class="big-text activity-result" id="activityResult">
+        Ready when you are...
+      </div>
+      <button class="action" onclick="generateActivity()">Give me something!</button>
+    </div>
+  </div>
+
+  <div class="panel" id="eightball">
+    <div class="card">
+      <h2>Magic 8-Ball</h2>
+      <p style="color:var(--muted);margin-top:0.5rem">Think of a yes/no question, then click the ball</p>
+      <div class="eight-ball" id="eightBall" onclick="shakeBall()">
+        <div class="answer" id="ballAnswer"></div>
+      </div>
+      <p style="color:var(--muted);font-size:0.9rem">Click the ball to shake</p>
+    </div>
+  </div>
+
+  <div class="panel" id="wyr">
+    <div class="card">
+      <h2>Would You Rather</h2>
+      <div class="wyr-options">
+        <button class="wyr-btn" id="wyrA" onclick="pickWyr(this)">Option A</button>
+        <button class="wyr-btn" id="wyrB" onclick="pickWyr(this)">Option B</button>
+      </div>
+      <button class="action" onclick="newWyr()">New Question</button>
+    </div>
+  </div>
+
+  <div class="panel" id="reaction">
+    <div class="card">
+      <h2>Reaction Time Test</h2>
+      <p style="color:var(--muted);margin-top:0.5rem">Wait for green, then click as fast as you can!</p>
+      <div class="reaction-box waiting" id="reactionBox" onclick="handleReactionClick()">
+        Click to start
+      </div>
+      <div class="reaction-result" id="reactionResult"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="draw">
+    <div class="card">
+      <h2>Quick Doodle</h2>
+      <div class="draw-controls">
+        <div class="color-btn active" style="background:#111" data-color="#111" onclick="setColor(this)"></div>
+        <div class="color-btn" style="background:#e74c3c" data-color="#e74c3c" onclick="setColor(this)"></div>
+        <div class="color-btn" style="background:#3498db" data-color="#3498db" onclick="setColor(this)"></div>
+        <div class="color-btn" style="background:#2ecc71" data-color="#2ecc71" onclick="setColor(this)"></div>
+        <div class="color-btn" style="background:#f1c40f" data-color="#f1c40f" onclick="setColor(this)"></div>
+        <div class="color-btn" style="background:#9b59b6" data-color="#9b59b6" onclick="setColor(this)"></div>
+        <button class="small-btn" onclick="clearCanvas()">Clear</button>
+        <button class="small-btn" onclick="downloadDrawing()" style="background:var(--accent2)">Download</button>
+      </div>
+      <canvas id="drawCanvas" width="500" height="300"></canvas>
+    </div>
+  </div>
+
+  <div class="panel" id="tools">
+    <div class="card">
+      <h2>Coin & Dice</h2>
+      <div class="tools-row">
+        <div class="tool-box">
+          <h3>Coin Flip</h3>
+          <div class="tool-result" id="coinResult">🪙</div>
+          <button class="small-btn" onclick="flipCoin()">Flip</button>
+        </div>
+        <div class="tool-box">
+          <h3>Dice Roll</h3>
+          <div class="tool-result" id="diceResult">🎲</div>
+          <button class="small-btn" onclick="rollDice()">Roll</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="joke">
+    <div class="card">
+      <h2>Random Joke</h2>
+      <div class="big-text" id="jokeText">
+        Click for a terrible joke
+      </div>
+      <button class="action" onclick="tellJoke()">Hit me</button>
+    </div>
+  </div>
+
+  <footer>
+    Made for when you're bored • Open with Ctrl+O anytime
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    const activities = [
+      "Do 10 jumping jacks right now",
+      "Text someone a random compliment",
+      "Make the weirdest face you can in a mirror",
+      "Write a 4-line poem about your left sock",
+      "Dance like nobody's watching for 30 seconds",
+      "Invent a new handshake with yourself",
+      "Name 5 things you can see that are blue",
+      "Hum your favorite song without lyrics",
+      "Balance something on your head for 20 seconds",
+      "Tell a plant (or imaginary plant) your secrets",
+      "Do your best celebrity impression",
+      "Create a tiny story using only 6 words",
+      "Stretch like a cat for 1 full minute",
+      "Count backwards from 50 in a funny voice",
+      "Draw a potato with arms and legs",
+      "Pretend you're a news anchor reporting on your day",
+      "Make up a superhero name for yourself",
+      "Find 3 things in the room that start with 'S'",
+      "Whisper a secret to your coffee/tea/water",
+      "Do the robot dance for 15 seconds",
+      "Write a haiku about being bored",
+      "Invent a new word and its definition",
+      "Act out your morning routine in slow motion",
+      "Compliment yourself out loud (seriously)",
+      "Make a paper airplane and fly it"
+    ];
+
+    function generateActivity() {
+      const el = document.getElementById('activityResult');
+      el.style.opacity = 0;
+      setTimeout(() => {
+        el.textContent = activities[Math.floor(Math.random() * activities.length)];
+        el.style.opacity = 1;
+      }, 200);
+    }
+
+    const answers = [
+      "Yes, definitely", "It is certain", "Without a doubt", "Yes", "Most likely",
+      "Outlook good", "Signs point to yes", "Reply hazy, try again", "Ask again later",
+      "Better not tell you now", "Cannot predict now", "Concentrate and ask again",
+      "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good",
+      "Very doubtful", "Absolutely not", "No way", "The stars say no"
+    ];
+
+    function shakeBall() {
+      const ball = document.getElementById('eightBall');
+      const answerEl = document.getElementById('ballAnswer');
+      ball.classList.remove('showing');
+      ball.style.transform = 'rotate(10deg)';
+      setTimeout(() => { ball.style.transform = 'rotate(-10deg)'; }, 100);
+      setTimeout(() => { ball.style.transform = 'rotate(5deg)'; }, 200);
+      setTimeout(() => {
+        ball.style.transform = 'rotate(0deg)';
+        answerEl.textContent = answers[Math.floor(Math.random() * answers.length)];
+        ball.classList.add('showing');
+      }, 350);
+    }
+
+    const wyrPairs = [
+      ["Have unlimited pizza for a year", "Have unlimited tacos for a year"],
+      ["Be able to fly", "Be able to turn invisible"],
+      ["Always be 10 minutes early", "Always be 20 minutes late"],
+      ["Live without music", "Live without movies"],
+      ["Have a personal robot butler", "Have a personal chef"],
+      ["Fight 100 duck-sized horses", "Fight 1 horse-sized duck"],
+      ["Only be able to whisper", "Only be able to shout"],
+      ["Have free Wi-Fi everywhere", "Have free coffee everywhere"],
+      ["Be famous for something silly", "Be rich but completely unknown"],
+      ["Never use social media again", "Never watch another video again"],
+      ["Have a pause button for life", "Have a rewind button for life"],
+      ["Always smell like fresh cookies", "Always have perfect hair"],
+      ["Talk to animals", "Speak every human language"],
+      ["Live in a treehouse", "Live in an underground bunker"],
+      ["Have super strength", "Have super speed"]
+    ];
+
+    function newWyr() {
+      const pair = wyrPairs[Math.floor(Math.random() * wyrPairs.length)];
+      document.getElementById('wyrA').textContent = pair[0];
+      document.getElementById('wyrB').textContent = pair[1];
+      document.getElementById('wyrA').classList.remove('selected');
+      document.getElementById('wyrB').classList.remove('selected');
+    }
+
+    function pickWyr(btn) {
+      document.querySelectorAll('.wyr-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    newWyr();
+
+    let reactionState = 'idle';
+    let startTime = 0;
+    let timeoutId = null;
+
+    function handleReactionClick() {
+      const box = document.getElementById('reactionBox');
+      const result = document.getElementById('reactionResult');
+
+      if (reactionState === 'idle' || reactionState === 'result') {
+        reactionState = 'waiting';
+        box.className = 'reaction-box waiting';
+        box.textContent = 'Wait for green...';
+        result.textContent = '';
+        const delay = 1500 + Math.random() * 3000;
+        timeoutId = setTimeout(() => {
+          reactionState = 'ready';
+          box.className = 'reaction-box go';
+          box.textContent = 'CLICK!';
+          startTime = performance.now();
+        }, delay);
+      } else if (reactionState === 'waiting') {
+        clearTimeout(timeoutId);
+        reactionState = 'result';
+        box.className = 'reaction-box waiting';
+        box.textContent = 'Too early! Click to try again';
+        result.textContent = 'Patience, young padawan 😅';
+      } else if (reactionState === 'ready') {
+        const time = Math.round(performance.now() - startTime);
+        reactionState = 'result';
+        box.className = 'reaction-box waiting';
+        box.textContent = 'Click to try again';
+        let msg = `${time} ms`;
+        if (time < 150) msg += ' — Superhuman! ⚡';
+        else if (time < 200) msg += ' — Excellent! 🔥';
+        else if (time < 250) msg += ' — Pretty good! 👍';
+        else if (time < 300) msg += ' — Decent 😊';
+        else msg += ' — Keep practicing!';
+        result.textContent = msg;
+      }
+    }
+
+    const canvas = document.getElementById('drawCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    let currentColor = '#111';
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 3;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+      const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+      return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    function startDraw(e) {
+      e.preventDefault();
+      drawing = true;
+      const pos = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+    }
+
+    function draw(e) {
+      if (!drawing) return;
+      e.preventDefault();
+      const pos = getPos(e);
+      ctx.strokeStyle = currentColor;
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+    }
+
+    function stopDraw() {
+      drawing = false;
+    }
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDraw);
+    canvas.addEventListener('mouseout', stopDraw);
+    canvas.addEventListener('touchstart', startDraw);
+    canvas.addEventListener('touchmove', draw);
+    canvas.addEventListener('touchend', stopDraw);
+
+    function setColor(el) {
+      document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      currentColor = el.dataset.color;
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function flipCoin() {
+      const el = document.getElementById('coinResult');
+      el.style.transform = 'rotateY(180deg)';
+      setTimeout(() => {
+        el.textContent = Math.random() < 0.5 ? 'Heads' : 'Tails';
+        el.style.transform = 'rotateY(0deg)';
+      }, 200);
+    }
+
+    function rollDice() {
+      const el = document.getElementById('diceResult');
+      el.style.transform = 'scale(0.5)';
+      setTimeout(() => {
+        el.textContent = Math.floor(Math.random() * 6) + 1;
+        el.style.transform = 'scale(1)';
+      }, 150);
+    }
+
+    const jokes = [
+      "Why don't scientists trust atoms? Because they make up everything!",
+      "What do you call a fake noodle? An impasta!",
+      "Why did the scarecrow win an award? Because he was outstanding in his field!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+      "What do you call a bear with no teeth? A gummy bear!",
+      "Why can't you give Elsa a balloon? Because she will let it go!",
+      "What did one wall say to the other? I'll meet you at the corner!",
+      "Why did the bicycle fall over? Because it was two tired!",
+      "What do you call cheese that isn't yours? Nacho cheese!",
+      "Why did the coffee file a police report? It got mugged!",
+      "What's orange and sounds like a parrot? A carrot!",
+      "Why don't eggs tell jokes? They'd crack each other up!",
+      "What do you call a sleeping bull? A bulldozer!",
+      "Why did the golfer bring two pairs of pants? In case he got a hole in one!",
+      "What do you call a fish wearing a bowtie? Sofishticated!"
+    ];
+
+    function tellJoke() {
+      const el = document.getElementById('jokeText');
+      el.style.opacity = 0;
+      setTimeout(() => {
+        el.textContent = jokes[Math.floor(Math.random() * jokes.length)];
+        el.style.opacity = 1;
+      }, 200);
+    }
+
+    function downloadPage() {
+      const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'boredom-buster.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadDrawing() {
+      const link = document.createElement('a');
+      link.download = 'my-doodle.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>
