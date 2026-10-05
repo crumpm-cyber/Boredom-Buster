@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boredom Buster 🚀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Boredom Buster</title>
   <style>
     :root {
       --bg: #0f0f1a;
@@ -19,73 +19,62 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
       background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 107, 107, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(78, 205, 196, 0.12) 0%, transparent 40%);
+        radial-gradient(circle at 20% 30%, rgba(255, 107, 107, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(78, 205, 196, 0.10) 0%, transparent 40%);
     }
 
     header {
       text-align: center;
-      padding: 2rem 1rem 1rem;
-      position: relative;
+      padding: 1.1rem 0.7rem 0.5rem;
     }
 
     h1 {
-      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
       background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 0.3rem;
-      letter-spacing: -0.5px;
+      margin-bottom: 0.15rem;
     }
 
     .subtitle {
       color: var(--muted);
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
 
     .download-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.35rem;
       background: linear-gradient(135deg, var(--accent3), #ffd93d);
       color: #111;
       border: none;
-      padding: 0.7rem 1.4rem;
-      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
       font-weight: 700;
       border-radius: 999px;
       cursor: pointer;
-      margin-top: 1.2rem;
-      box-shadow: 0 4px 15px rgba(255, 230, 109, 0.35);
-      transition: all 0.2s;
-    }
-
-    .download-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(255, 230, 109, 0.5);
-    }
-
-    .download-btn:active {
-      transform: scale(0.98);
+      margin-top: 0.7rem;
+      box-shadow: 0 3px 12px rgba(255, 230, 109, 0.3);
     }
 
     .tabs {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 0.5rem;
-      padding: 1rem;
-      max-width: 900px;
+      gap: 0.35rem;
+      padding: 0.6rem 0.4rem;
+      max-width: 920px;
       margin: 0 auto;
     }
 
@@ -93,111 +82,98 @@
       background: var(--card);
       border: 2px solid transparent;
       color: var(--text);
-      padding: 0.6rem 1.1rem;
+      padding: 0.4rem 0.75rem;
       border-radius: 999px;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
-    .tab-btn:hover {
+    .tab-btn:hover, .tab-btn:focus {
       border-color: var(--accent2);
-      transform: translateY(-2px);
     }
 
     .tab-btn.active {
       background: linear-gradient(135deg, var(--accent), #ff8e8e);
       color: #111;
-      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+      box-shadow: 0 3px 12px rgba(255, 107, 107, 0.35);
     }
 
     .panel {
       display: none;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      padding: 1.5rem;
-      animation: fadeIn 0.3s ease;
+      max-width: 640px;
+      margin: 0 auto 1.8rem;
+      padding: 0.7rem;
     }
 
     .panel.active {
       display: block;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .card {
       background: var(--card);
-      border-radius: 20px;
-      padding: 1.8rem;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      border-radius: 16px;
+      padding: 1.2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
       text-align: center;
     }
 
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+    }
+
     .big-text {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       line-height: 1.4;
-      min-height: 80px;
+      min-height: 65px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 1.5rem 0;
-      padding: 0 1rem;
+      margin: 1rem 0;
+      padding: 0 0.4rem;
     }
 
     button.action {
       background: linear-gradient(135deg, var(--accent2), #3dbdb5);
       color: #111;
       border: none;
-      padding: 0.9rem 2rem;
-      font-size: 1.1rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.95rem;
       font-weight: 700;
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
-    }
-
-    button.action:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(78, 205, 196, 0.5);
+      box-shadow: 0 3px 12px rgba(78, 205, 196, 0.3);
     }
 
     button.action:active {
-      transform: scale(0.98);
+      transform: scale(0.97);
     }
 
     .activity-result {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: var(--accent3);
     }
 
     .eight-ball {
-      width: 180px;
-      height: 180px;
+      width: 140px;
+      height: 140px;
       background: radial-gradient(circle at 30% 30%, #333, #111);
       border-radius: 50%;
-      margin: 1.5rem auto;
+      margin: 1.1rem auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.8), 0 8px 25px rgba(0,0,0,0.45);
       position: relative;
       cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .eight-ball:hover {
-      transform: scale(1.05);
     }
 
     .eight-ball::before {
       content: '8';
-      font-size: 3.5rem;
+      font-size: 2.6rem;
       font-weight: 900;
       color: #fff;
       opacity: 0.9;
@@ -209,20 +185,20 @@
 
     .answer {
       position: absolute;
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       background: #1a1a4a;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 600;
       text-align: center;
-      padding: 10px;
+      padding: 7px;
       color: #aaf;
       opacity: 0;
-      transition: opacity 0.4s;
+      transition: opacity 0.35s;
     }
 
     .eight-ball.showing .answer {
@@ -232,29 +208,24 @@
     .wyr-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin: 1.5rem 0;
+      gap: 0.65rem;
+      margin: 1rem 0;
     }
 
     .wyr-btn {
       background: var(--bg);
       border: 2px solid var(--accent);
       color: var(--text);
-      padding: 1.2rem;
-      border-radius: 16px;
+      padding: 0.85rem;
+      border-radius: 12px;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.88rem;
       font-weight: 600;
-      transition: all 0.2s;
-      min-height: 100px;
+      min-height: 75px;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .wyr-btn:hover {
-      background: rgba(255, 107, 107, 0.2);
-      transform: scale(1.03);
+      text-align: center;
     }
 
     .wyr-btn.selected {
@@ -262,65 +233,41 @@
       color: #111;
     }
 
-    .reaction-box {
+    .draw-wrap {
       width: 100%;
-      height: 220px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.1s;
-      user-select: none;
-      margin: 1rem 0;
-    }
-
-    .reaction-box.waiting {
-      background: #333;
-    }
-
-    .reaction-box.ready {
-      background: #e74c3c;
-    }
-
-    .reaction-box.go {
-      background: #2ecc71;
-    }
-
-    .reaction-result {
-      font-size: 1.3rem;
-      margin-top: 1rem;
-      color: var(--accent3);
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
     }
 
     #drawCanvas {
-      background: #fff;
-      border-radius: 12px;
+      background: #ffffff;
+      border-radius: 10px;
       cursor: crosshair;
       touch-action: none;
       width: 100%;
-      max-width: 500px;
-      height: 300px;
+      height: auto;
       display: block;
-      margin: 0 auto 1rem;
+      aspect-ratio: 5 / 3;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
     }
 
     .draw-controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
+      gap: 0.4rem;
       justify-content: center;
-      margin-bottom: 1rem;
+      margin: 0.65rem 0;
+      align-items: center;
     }
 
     .color-btn {
-      width: 36px;
-      height: 36px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       border: 3px solid transparent;
       cursor: pointer;
+      flex-shrink: 0;
     }
 
     .color-btn.active {
@@ -328,92 +275,195 @@
       transform: scale(1.15);
     }
 
+    .small-btn {
+      background: var(--accent);
+      color: #111;
+      border: none;
+      padding: 0.38rem 0.85rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
     .tools-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 0.9rem;
       justify-content: center;
-      margin-top: 1rem;
+      margin-top: 0.7rem;
     }
 
     .tool-box {
       background: var(--bg);
-      border-radius: 16px;
-      padding: 1.2rem;
-      min-width: 140px;
+      border-radius: 12px;
+      padding: 0.9rem;
+      min-width: 115px;
     }
 
     .tool-result {
-      font-size: 2.5rem;
-      margin: 0.8rem 0;
-      min-height: 60px;
+      font-size: 1.9rem;
+      margin: 0.5rem 0;
+      min-height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .small-btn {
-      background: var(--accent);
-      color: #111;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 999px;
-      font-weight: 700;
+    .palette {
+      display: flex;
+      gap: 0.45rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 0.9rem 0;
+    }
+
+    .swatch {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.2);
       cursor: pointer;
+    }
+
+    .breathe-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent2), #2a9d8f);
+      margin: 1.1rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #111;
+      transition: transform 4s ease-in-out;
+    }
+
+    .breathe-circle.inhale {
+      transform: scale(1.35);
+    }
+
+    .breathe-circle.exhale {
+      transform: scale(1);
+    }
+
+    .quote-text {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--accent3);
+      line-height: 1.45;
+    }
+
+    .pattern-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .pattern-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: transform 0.1s, opacity 0.15s;
+    }
+
+    .pattern-btn:active, .pattern-btn.flash {
+      transform: scale(1.1);
+      opacity: 0.7;
+    }
+
+    .pattern-status {
+      min-height: 28px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .riddle-answer {
+      margin-top: 0.8rem;
+      font-size: 1.05rem;
+      color: var(--accent2);
+      min-height: 30px;
+    }
+
+    .story-box {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 1rem;
+      min-height: 90px;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      text-align: left;
+      margin: 0.9rem 0;
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 1.3rem;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.78rem;
     }
 
-    @media (max-width: 500px) {
-      .wyr-options {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 500px), (max-height: 600px) {
+      header { padding: 0.7rem 0.4rem 0.3rem; }
+      h1 { font-size: 1.35rem; }
+      .tabs { gap: 0.25rem; padding: 0.4rem 0.25rem; }
+      .tab-btn { padding: 0.32rem 0.55rem; font-size: 0.74rem; }
+      .card { padding: 0.9rem; }
+      .big-text { font-size: 1.05rem; min-height: 55px; }
+      .wyr-options { grid-template-columns: 1fr; }
+      .eight-ball { width: 120px; height: 120px; }
+      .breathe-circle { width: 110px; height: 110px; }
+      .pattern-btn { width: 52px; height: 52px; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Boredom Buster</h1>
-    <p class="subtitle">You're bored. We got you. Pick something fun ↓</p>
-    <button class="download-btn" onclick="downloadPage()">
-      ⬇️ Download this page
-    </button>
+    <p class="subtitle">Simple things to do when you're bored</p>
+    <button class="download-btn" onclick="downloadPage()">⬇️ Save this page</button>
   </header>
 
   <div class="tabs">
     <button class="tab-btn active" data-tab="activity">🎲 Activity</button>
     <button class="tab-btn" data-tab="eightball">🎱 8-Ball</button>
-    <button class="tab-btn" data-tab="wyr">🤔 Would You Rather</button>
-    <button class="tab-btn" data-tab="reaction">⚡ Reaction</button>
+    <button class="tab-btn" data-tab="wyr">🤔 Rather</button>
     <button class="tab-btn" data-tab="draw">🎨 Draw</button>
     <button class="tab-btn" data-tab="tools">🪙 Tools</button>
     <button class="tab-btn" data-tab="joke">😂 Joke</button>
+    <button class="tab-btn" data-tab="quote">💬 Quote</button>
+    <button class="tab-btn" data-tab="compliment">🌟 Nice</button>
+    <button class="tab-btn" data-tab="colors">🎨 Colors</button>
+    <button class="tab-btn" data-tab="breathe">🌬️ Calm</button>
+    <button class="tab-btn" data-tab="name">🏷️ Name</button>
+    <button class="tab-btn" data-tab="pattern">🔵 Pattern</button>
+    <button class="tab-btn" data-tab="riddle">🧩 Riddle</button>
+    <button class="tab-btn" data-tab="story">📖 Story</button>
   </div>
 
   <div class="panel active" id="activity">
     <div class="card">
       <h2>Random Activity</h2>
-      <p style="color:var(--muted);margin-top:0.5rem">Click for a spontaneous thing to do</p>
-      <div class="big-text activity-result" id="activityResult">
-        Ready when you are...
-      </div>
-      <button class="action" onclick="generateActivity()">Give me something!</button>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem">A simple thing you can do right now</p>
+      <div class="big-text activity-result" id="activityResult">Ready when you are...</div>
+      <button class="action" onclick="generateActivity()">Give me something</button>
     </div>
   </div>
 
   <div class="panel" id="eightball">
     <div class="card">
       <h2>Magic 8-Ball</h2>
-      <p style="color:var(--muted);margin-top:0.5rem">Think of a yes/no question, then click the ball</p>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem">Think of a yes/no question, then tap the ball</p>
       <div class="eight-ball" id="eightBall" onclick="shakeBall()">
         <div class="answer" id="ballAnswer"></div>
       </div>
-      <p style="color:var(--muted);font-size:0.9rem">Click the ball to shake</p>
     </div>
   </div>
 
@@ -428,17 +478,6 @@
     </div>
   </div>
 
-  <div class="panel" id="reaction">
-    <div class="card">
-      <h2>Reaction Time Test</h2>
-      <p style="color:var(--muted);margin-top:0.5rem">Wait for green, then click as fast as you can!</p>
-      <div class="reaction-box waiting" id="reactionBox" onclick="handleReactionClick()">
-        Click to start
-      </div>
-      <div class="reaction-result" id="reactionResult"></div>
-    </div>
-  </div>
-
   <div class="panel" id="draw">
     <div class="card">
       <h2>Quick Doodle</h2>
@@ -449,10 +488,15 @@
         <div class="color-btn" style="background:#2ecc71" data-color="#2ecc71" onclick="setColor(this)"></div>
         <div class="color-btn" style="background:#f1c40f" data-color="#f1c40f" onclick="setColor(this)"></div>
         <div class="color-btn" style="background:#9b59b6" data-color="#9b59b6" onclick="setColor(this)"></div>
+        <div class="color-btn" style="background:#e67e22" data-color="#e67e22" onclick="setColor(this)"></div>
+        <div class="color-btn" style="background:#1abc9c" data-color="#1abc9c" onclick="setColor(this)"></div>
         <button class="small-btn" onclick="clearCanvas()">Clear</button>
-        <button class="small-btn" onclick="downloadDrawing()" style="background:var(--accent2)">Download</button>
+        <button class="small-btn" onclick="downloadDrawing()" style="background:var(--accent2)">Save</button>
       </div>
-      <canvas id="drawCanvas" width="500" height="300"></canvas>
+      <div class="draw-wrap">
+        <canvas id="drawCanvas"></canvas>
+      </div>
+      <p style="color:var(--muted);font-size:0.8rem;margin-top:0.5rem">Draw with mouse or finger • works in side panel</p>
     </div>
   </div>
 
@@ -461,12 +505,12 @@
       <h2>Coin & Dice</h2>
       <div class="tools-row">
         <div class="tool-box">
-          <h3>Coin Flip</h3>
+          <h3 style="font-size:0.9rem">Coin Flip</h3>
           <div class="tool-result" id="coinResult">🪙</div>
           <button class="small-btn" onclick="flipCoin()">Flip</button>
         </div>
         <div class="tool-box">
-          <h3>Dice Roll</h3>
+          <h3 style="font-size:0.9rem">Dice Roll</h3>
           <div class="tool-result" id="diceResult">🎲</div>
           <button class="small-btn" onclick="rollDice()">Roll</button>
         </div>
@@ -477,15 +521,91 @@
   <div class="panel" id="joke">
     <div class="card">
       <h2>Random Joke</h2>
-      <div class="big-text" id="jokeText">
-        Click for a terrible joke
-      </div>
+      <div class="big-text" id="jokeText">Tap for a silly joke</div>
       <button class="action" onclick="tellJoke()">Hit me</button>
     </div>
   </div>
 
+  <div class="panel" id="quote">
+    <div class="card">
+      <h2>Random Quote</h2>
+      <div class="big-text quote-text" id="quoteText">Tap for a quote</div>
+      <button class="action" onclick="newQuote()">New Quote</button>
+    </div>
+  </div>
+
+  <div class="panel" id="compliment">
+    <div class="card">
+      <h2>Nice Thing</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem">A little kindness for you</p>
+      <div class="big-text" id="complimentText" style="color:var(--accent2)">Tap for a compliment</div>
+      <button class="action" onclick="newCompliment()">Be Nice</button>
+    </div>
+  </div>
+
+  <div class="panel" id="colors">
+    <div class="card">
+      <h2>Color Palette</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem">Random nice colors • tap a swatch to copy</p>
+      <div class="palette" id="palette"></div>
+      <button class="action" onclick="newPalette()">New Colors</button>
+    </div>
+  </div>
+
+  <div class="panel" id="breathe">
+    <div class="card">
+      <h2>Calm Breathing</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem">Follow the circle • inhale when it grows</p>
+      <div class="breathe-circle" id="breatheCircle">Tap to start</div>
+      <button class="action" id="breatheBtn" onclick="toggleBreathe()">Start</button>
+    </div>
+  </div>
+
+  <div class="panel" id="name">
+    <div class="card">
+      <h2>Silly Name</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem">Random fun names</p>
+      <div class="big-text" id="nameText" style="color:var(--accent3)">Tap for a name</div>
+      <button class="action" onclick="newName()">New Name</button>
+    </div>
+  </div>
+
+  <div class="panel" id="pattern">
+    <div class="card">
+      <h2>Color Pattern</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem">Watch the colors, then tap them in the same order</p>
+      <div class="pattern-status" id="patternStatus">Tap Start to begin</div>
+      <div class="pattern-row" id="patternRow">
+        <button class="pattern-btn" style="background:#e74c3c" data-id="0" onclick="patternClick(0)"></button>
+        <button class="pattern-btn" style="background:#3498db" data-id="1" onclick="patternClick(1)"></button>
+        <button class="pattern-btn" style="background:#2ecc71" data-id="2" onclick="patternClick(2)"></button>
+        <button class="pattern-btn" style="background:#f1c40f" data-id="3" onclick="patternClick(3)"></button>
+      </div>
+      <button class="action" id="patternStartBtn" onclick="startPattern()">Start</button>
+    </div>
+  </div>
+
+  <div class="panel" id="riddle">
+    <div class="card">
+      <h2>Riddle</h2>
+      <div class="big-text" id="riddleText" style="font-size:1.1rem">Tap for a riddle</div>
+      <button class="action" onclick="newRiddle()" style="margin-right:0.5rem">New Riddle</button>
+      <button class="action" onclick="showRiddleAnswer()" style="background:linear-gradient(135deg,var(--accent),#ff8e8e)">Show Answer</button>
+      <div class="riddle-answer" id="riddleAnswer"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="story">
+    <div class="card">
+      <h2>Story Starter</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:0.25rem">A random beginning • you can continue it in your head</p>
+      <div class="story-box" id="storyText">Tap for a story start...</div>
+      <button class="action" onclick="newStory()">New Story</button>
+    </div>
+  </div>
+
   <footer>
-    Made for when you're bored • Open with Ctrl+O anytime
+    Made for quiet moments • Works offline
   </footer>
 
   <script>
@@ -495,44 +615,45 @@
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById(btn.dataset.tab).classList.add('active');
+        if (btn.dataset.tab === 'draw') setTimeout(resizeCanvas, 60);
       });
     });
 
     const activities = [
-      "Do 10 jumping jacks right now",
-      "Text someone a random compliment",
-      "Make the weirdest face you can in a mirror",
-      "Write a 4-line poem about your left sock",
-      "Dance like nobody's watching for 30 seconds",
-      "Invent a new handshake with yourself",
-      "Name 5 things you can see that are blue",
-      "Hum your favorite song without lyrics",
-      "Balance something on your head for 20 seconds",
-      "Tell a plant (or imaginary plant) your secrets",
-      "Do your best celebrity impression",
-      "Create a tiny story using only 6 words",
-      "Stretch like a cat for 1 full minute",
-      "Count backwards from 50 in a funny voice",
-      "Draw a potato with arms and legs",
-      "Pretend you're a news anchor reporting on your day",
-      "Make up a superhero name for yourself",
-      "Find 3 things in the room that start with 'S'",
-      "Whisper a secret to your coffee/tea/water",
-      "Do the robot dance for 15 seconds",
-      "Write a haiku about being bored",
-      "Invent a new word and its definition",
-      "Act out your morning routine in slow motion",
-      "Compliment yourself out loud (seriously)",
-      "Make a paper airplane and fly it"
+      "Do 10 slow shoulder rolls",
+      "Write down 3 things you're glad exist",
+      "Look out a window for 30 seconds and notice 5 details",
+      "Make the silliest face you can",
+      "Stretch your arms up high and take a deep breath",
+      "Name 5 colors you can see right now",
+      "Hum a song without using words",
+      "Tidy one small area near you",
+      "Think of a happy memory for 20 seconds",
+      "Write a 6-word story",
+      "Smile at yourself in a reflection",
+      "Count backwards from 30 slowly",
+      "Invent a new word and what it means",
+      "Wiggle your toes for 15 seconds",
+      "Describe your day using only positive words",
+      "Pretend you're presenting the weather",
+      "Find something shaped like a circle",
+      "Say one kind thing about yourself out loud",
+      "Draw a tiny doodle of a cloud",
+      "Take 5 slow deep breaths",
+      "List 3 sounds you can hear right now",
+      "Make up a nickname for your favorite object",
+      "Stretch like a cat for 20 seconds",
+      "Think of a place you'd like to visit and why",
+      "Write a tiny thank-you note (even if you don't send it)"
     ];
 
     function generateActivity() {
       const el = document.getElementById('activityResult');
-      el.style.opacity = 0;
+      el.style.opacity = '0';
       setTimeout(() => {
         el.textContent = activities[Math.floor(Math.random() * activities.length)];
-        el.style.opacity = 1;
-      }, 200);
+        el.style.opacity = '1';
+      }, 180);
     }
 
     const answers = [
@@ -547,32 +668,32 @@
       const ball = document.getElementById('eightBall');
       const answerEl = document.getElementById('ballAnswer');
       ball.classList.remove('showing');
-      ball.style.transform = 'rotate(10deg)';
-      setTimeout(() => { ball.style.transform = 'rotate(-10deg)'; }, 100);
-      setTimeout(() => { ball.style.transform = 'rotate(5deg)'; }, 200);
+      ball.style.transform = 'rotate(8deg)';
+      setTimeout(() => ball.style.transform = 'rotate(-8deg)', 90);
+      setTimeout(() => ball.style.transform = 'rotate(4deg)', 180);
       setTimeout(() => {
         ball.style.transform = 'rotate(0deg)';
         answerEl.textContent = answers[Math.floor(Math.random() * answers.length)];
         ball.classList.add('showing');
-      }, 350);
+      }, 300);
     }
 
     const wyrPairs = [
       ["Have unlimited pizza for a year", "Have unlimited tacos for a year"],
       ["Be able to fly", "Be able to turn invisible"],
-      ["Always be 10 minutes early", "Always be 20 minutes late"],
+      ["Always be 10 minutes early", "Always be 15 minutes late"],
       ["Live without music", "Live without movies"],
-      ["Have a personal robot butler", "Have a personal chef"],
-      ["Fight 100 duck-sized horses", "Fight 1 horse-sized duck"],
-      ["Only be able to whisper", "Only be able to shout"],
-      ["Have free Wi-Fi everywhere", "Have free coffee everywhere"],
-      ["Be famous for something silly", "Be rich but completely unknown"],
-      ["Never use social media again", "Never watch another video again"],
-      ["Have a pause button for life", "Have a rewind button for life"],
-      ["Always smell like fresh cookies", "Always have perfect hair"],
-      ["Talk to animals", "Speak every human language"],
-      ["Live in a treehouse", "Live in an underground bunker"],
-      ["Have super strength", "Have super speed"]
+      ["Have a robot helper", "Have a personal chef"],
+      ["Only whisper for a day", "Only shout for a day"],
+      ["Have free snacks forever", "Have free drinks forever"],
+      ["Be great at drawing", "Be great at writing"],
+      ["Live in a treehouse", "Live in a cozy cabin"],
+      ["Always have perfect weather", "Always have perfect timing"],
+      ["Talk to animals for one day", "Speak every language for one day"],
+      ["Have a pause button for life", "Have a slow-motion button"],
+      ["Always smell like cookies", "Always have perfect hair"],
+      ["Know how to cook anything", "Know how to fix anything"],
+      ["Have a secret library", "Have a secret garden"]
     ];
 
     function newWyr() {
@@ -582,85 +703,65 @@
       document.getElementById('wyrA').classList.remove('selected');
       document.getElementById('wyrB').classList.remove('selected');
     }
-
     function pickWyr(btn) {
       document.querySelectorAll('.wyr-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
     }
-
     newWyr();
 
-    let reactionState = 'idle';
-    let startTime = 0;
-    let timeoutId = null;
-
-    function handleReactionClick() {
-      const box = document.getElementById('reactionBox');
-      const result = document.getElementById('reactionResult');
-
-      if (reactionState === 'idle' || reactionState === 'result') {
-        reactionState = 'waiting';
-        box.className = 'reaction-box waiting';
-        box.textContent = 'Wait for green...';
-        result.textContent = '';
-        const delay = 1500 + Math.random() * 3000;
-        timeoutId = setTimeout(() => {
-          reactionState = 'ready';
-          box.className = 'reaction-box go';
-          box.textContent = 'CLICK!';
-          startTime = performance.now();
-        }, delay);
-      } else if (reactionState === 'waiting') {
-        clearTimeout(timeoutId);
-        reactionState = 'result';
-        box.className = 'reaction-box waiting';
-        box.textContent = 'Too early! Click to try again';
-        result.textContent = 'Patience, young padawan 😅';
-      } else if (reactionState === 'ready') {
-        const time = Math.round(performance.now() - startTime);
-        reactionState = 'result';
-        box.className = 'reaction-box waiting';
-        box.textContent = 'Click to try again';
-        let msg = `${time} ms`;
-        if (time < 150) msg += ' — Superhuman! ⚡';
-        else if (time < 200) msg += ' — Excellent! 🔥';
-        else if (time < 250) msg += ' — Pretty good! 👍';
-        else if (time < 300) msg += ' — Decent 😊';
-        else msg += ' — Keep practicing!';
-        result.textContent = msg;
-      }
-    }
-
     const canvas = document.getElementById('drawCanvas');
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     let drawing = false;
     let currentColor = '#111';
+    let lastX = 0, lastY = 0;
 
     function resizeCanvas() {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * window.devicePixelRatio;
-      canvas.height = rect.height * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      const wrap = canvas.parentElement;
+      if (!wrap) return;
+      const rect = wrap.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.max(Math.floor(rect.width), 200);
+      const h = Math.floor(w * 0.6);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
     }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
 
     function getPos(e) {
       const rect = canvas.getBoundingClientRect();
-      const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-      const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-      return { x: clientX - rect.left, y: clientY - rect.top };
+      let clientX, clientY;
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if (e.changedTouches && e.changedTouches.length > 0) {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      return { x: (clientX - rect.left), y: (clientY - rect.top) };
     }
 
     function startDraw(e) {
       e.preventDefault();
       drawing = true;
       const pos = getPos(e);
+      lastX = pos.x;
+      lastY = pos.y;
       ctx.beginPath();
-      ctx.moveTo(pos.x, pos.y);
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(lastX + 0.1, lastY + 0.1);
+      ctx.strokeStyle = currentColor;
+      ctx.stroke();
     }
 
     function draw(e) {
@@ -668,21 +769,35 @@
       e.preventDefault();
       const pos = getPos(e);
       ctx.strokeStyle = currentColor;
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
       ctx.lineTo(pos.x, pos.y);
       ctx.stroke();
+      lastX = pos.x;
+      lastY = pos.y;
     }
 
-    function stopDraw() {
+    function stopDraw(e) {
+      if (e) e.preventDefault();
       drawing = false;
     }
 
     canvas.addEventListener('mousedown', startDraw);
     canvas.addEventListener('mousemove', draw);
     canvas.addEventListener('mouseup', stopDraw);
-    canvas.addEventListener('mouseout', stopDraw);
-    canvas.addEventListener('touchstart', startDraw);
-    canvas.addEventListener('touchmove', draw);
+    canvas.addEventListener('mouseleave', stopDraw);
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', draw, { passive: false });
     canvas.addEventListener('touchend', stopDraw);
+    canvas.addEventListener('touchcancel', stopDraw);
+
+    window.addEventListener('resize', () => {
+      if (document.getElementById('draw').classList.contains('active')) {
+        resizeCanvas();
+      }
+    });
+
+    setTimeout(resizeCanvas, 120);
 
     function setColor(el) {
       document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
@@ -691,52 +806,318 @@
     }
 
     function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const wrap = canvas.parentElement;
+      const rect = wrap.getBoundingClientRect();
+      const w = Math.floor(rect.width);
+      const h = Math.floor(w * 0.6);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function downloadDrawing() {
+      try {
+        const link = document.createElement('a');
+        link.download = 'doodle.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        alert('Could not save drawing on this device');
+      }
     }
 
     function flipCoin() {
       const el = document.getElementById('coinResult');
-      el.style.transform = 'rotateY(180deg)';
+      el.textContent = '...';
       setTimeout(() => {
         el.textContent = Math.random() < 0.5 ? 'Heads' : 'Tails';
-        el.style.transform = 'rotateY(0deg)';
       }, 200);
     }
 
     function rollDice() {
       const el = document.getElementById('diceResult');
-      el.style.transform = 'scale(0.5)';
+      el.textContent = '...';
       setTimeout(() => {
         el.textContent = Math.floor(Math.random() * 6) + 1;
-        el.style.transform = 'scale(1)';
-      }, 150);
+      }, 200);
     }
 
     const jokes = [
       "Why don't scientists trust atoms? Because they make up everything!",
       "What do you call a fake noodle? An impasta!",
-      "Why did the scarecrow win an award? Because he was outstanding in his field!",
-      "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+      "Why did the scarecrow win an award? He was outstanding in his field!",
       "What do you call a bear with no teeth? A gummy bear!",
       "Why can't you give Elsa a balloon? Because she will let it go!",
       "What did one wall say to the other? I'll meet you at the corner!",
-      "Why did the bicycle fall over? Because it was two tired!",
+      "Why did the bicycle fall over? It was two tired!",
       "What do you call cheese that isn't yours? Nacho cheese!",
       "Why did the coffee file a police report? It got mugged!",
       "What's orange and sounds like a parrot? A carrot!",
       "Why don't eggs tell jokes? They'd crack each other up!",
       "What do you call a sleeping bull? A bulldozer!",
-      "Why did the golfer bring two pairs of pants? In case he got a hole in one!",
-      "What do you call a fish wearing a bowtie? Sofishticated!"
+      "What do you call a fish wearing a bowtie? Sofishticated!",
+      "Why did the cookie go to the doctor? It was feeling crumbly!",
+      "What do you get when you cross a snowman and a vampire? Frostbite!"
     ];
 
     function tellJoke() {
       const el = document.getElementById('jokeText');
-      el.style.opacity = 0;
+      el.style.opacity = '0';
       setTimeout(() => {
         el.textContent = jokes[Math.floor(Math.random() * jokes.length)];
-        el.style.opacity = 1;
-      }, 200);
+        el.style.opacity = '1';
+      }, 180);
+    }
+
+    const quotes = [
+      "The only way to do great work is to love what you do. – Steve Jobs",
+      "You miss 100% of the shots you don't take. – Wayne Gretzky",
+      "It always seems impossible until it's done. – Nelson Mandela",
+      "Be yourself; everyone else is already taken. – Oscar Wilde",
+      "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "Happiness is not something ready made. It comes from your own actions. – Dalai Lama",
+      "Do what you can, with what you have, where you are. – Theodore Roosevelt",
+      "Keep your face always toward the sunshine. – Walt Whitman",
+      "The future belongs to those who believe in the beauty of their dreams. – Eleanor Roosevelt",
+      "Little by little, one travels far. – J.R.R. Tolkien",
+      "You are never too old to set another goal or to dream a new dream. – C.S. Lewis",
+      "What we think, we become. – Buddha",
+      "In the middle of difficulty lies opportunity. – Albert Einstein",
+      "The only limit to our realization of tomorrow is our doubts of today. – Franklin D. Roosevelt",
+      "Be kind whenever possible. It is always possible. – Dalai Lama"
+    ];
+
+    function newQuote() {
+      const el = document.getElementById('quoteText');
+      el.style.opacity = '0';
+      setTimeout(() => {
+        el.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+        el.style.opacity = '1';
+      }, 180);
+    }
+
+    const compliments = [
+      "You have a great sense of curiosity.",
+      "The way you notice small things is a real strength.",
+      "You're better at figuring things out than you give yourself credit for.",
+      "Your presence makes ordinary moments a little brighter.",
+      "You have a calm way of handling things that people notice.",
+      "You're thoughtful in ways that matter.",
+      "You make trying look easier than it is.",
+      "There's a quiet confidence about you.",
+      "You have good instincts.",
+      "People are lucky to know someone like you.",
+      "You bring a steady energy that's underrated.",
+      "You're more resilient than you realize.",
+      "Your ideas are worth sharing.",
+      "You have a talent for making things feel less complicated.",
+      "The world needs more people with your kind of patience."
+    ];
+
+    function newCompliment() {
+      const el = document.getElementById('complimentText');
+      el.style.opacity = '0';
+      setTimeout(() => {
+        el.textContent = compliments[Math.floor(Math.random() * compliments.length)];
+        el.style.opacity = '1';
+      }, 180);
+    }
+
+    function randomColor() {
+      const h = Math.floor(Math.random() * 360);
+      const s = 55 + Math.floor(Math.random() * 35);
+      const l = 45 + Math.floor(Math.random() * 25);
+      return `hsl(${h}, ${s}%, ${l}%)`;
+    }
+
+    function newPalette() {
+      const container = document.getElementById('palette');
+      container.innerHTML = '';
+      for (let i = 0; i < 5; i++) {
+        const color = randomColor();
+        const swatch = document.createElement('div');
+        swatch.className = 'swatch';
+        swatch.style.background = color;
+        swatch.title = color;
+        swatch.onclick = () => {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(color).catch(() => {});
+          }
+          swatch.style.outline = '3px solid #fff';
+          setTimeout(() => swatch.style.outline = 'none', 400);
+        };
+        container.appendChild(swatch);
+      }
+    }
+    newPalette();
+
+    let breathing = false;
+    let breatheTimeout = null;
+
+    function toggleBreathe() {
+      const circle = document.getElementById('breatheCircle');
+      const btn = document.getElementById('breatheBtn');
+      if (breathing) {
+        breathing = false;
+        clearTimeout(breatheTimeout);
+        circle.className = 'breathe-circle';
+        circle.textContent = 'Paused';
+        btn.textContent = 'Start';
+        return;
+      }
+      breathing = true;
+      btn.textContent = 'Stop';
+      runBreatheCycle();
+    }
+
+    function runBreatheCycle() {
+      if (!breathing) return;
+      const circle = document.getElementById('breatheCircle');
+      circle.textContent = 'Inhale...';
+      circle.className = 'breathe-circle inhale';
+      breatheTimeout = setTimeout(() => {
+        if (!breathing) return;
+        circle.textContent = 'Exhale...';
+        circle.className = 'breathe-circle exhale';
+        breatheTimeout = setTimeout(runBreatheCycle, 4000);
+      }, 4000);
+    }
+
+    const firstParts = ['Sunny', 'Cosmo', 'Pixel', 'Nova', 'Echo', 'Ziggy', 'Mochi', 'Pebble', 'Waffle', 'Nimbus', 'Jelly', 'Maple', 'Orbit', 'Pudding', 'Rocket'];
+    const secondParts = ['Bean', 'Spark', 'Buddy', 'Waves', 'Paws', 'Bits', 'Cloud', 'Noodle', 'Zap', 'Frost', 'Bloom', 'Chip', 'Dash', 'Glow', 'Muffin'];
+
+    function newName() {
+      const el = document.getElementById('nameText');
+      el.style.opacity = '0';
+      setTimeout(() => {
+        const name = firstParts[Math.floor(Math.random() * firstParts.length)] + ' ' +
+                     secondParts[Math.floor(Math.random() * secondParts.length)];
+        el.textContent = name;
+        el.style.opacity = '1';
+      }, 180);
+    }
+
+    let patternSeq = [];
+    let userStep = 0;
+    let patternPlaying = false;
+    let acceptingInput = false;
+
+    function flashBtn(id) {
+      const btn = document.querySelector(`.pattern-btn[data-id="${id}"]`);
+      if (!btn) return;
+      btn.classList.add('flash');
+      setTimeout(() => btn.classList.remove('flash'), 320);
+    }
+
+    function playSequence() {
+      patternPlaying = true;
+      acceptingInput = false;
+      document.getElementById('patternStatus').textContent = 'Watch...';
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i >= patternSeq.length) {
+          clearInterval(interval);
+          patternPlaying = false;
+          acceptingInput = true;
+          userStep = 0;
+          document.getElementById('patternStatus').textContent = 'Your turn – tap the colors in order';
+          return;
+        }
+        flashBtn(patternSeq[i]);
+        i++;
+      }, 600);
+    }
+
+    function startPattern() {
+      if (patternPlaying) return;
+      patternSeq = [];
+      const len = 2 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < len; i++) {
+        patternSeq.push(Math.floor(Math.random() * 4));
+      }
+      document.getElementById('patternStartBtn').textContent = 'Again';
+      playSequence();
+    }
+
+    function patternClick(id) {
+      if (!acceptingInput || patternPlaying) return;
+      flashBtn(id);
+      if (id === patternSeq[userStep]) {
+        userStep++;
+        if (userStep >= patternSeq.length) {
+          acceptingInput = false;
+          document.getElementById('patternStatus').textContent = 'Nice! Adding one more...';
+          setTimeout(() => {
+            patternSeq.push(Math.floor(Math.random() * 4));
+            playSequence();
+          }, 700);
+        }
+      } else {
+        acceptingInput = false;
+        document.getElementById('patternStatus').textContent = 'Almost – try again!';
+        setTimeout(() => {
+          playSequence();
+        }, 900);
+      }
+    }
+
+    const riddles = [
+      { q: "What has hands but cannot clap?", a: "A clock" },
+      { q: "What has a head and a tail but no body?", a: "A coin" },
+      { q: "What gets wetter the more it dries?", a: "A towel" },
+      { q: "What has many keys but can't open a single lock?", a: "A piano" },
+      { q: "What can travel around the world while staying in a corner?", a: "A stamp" },
+      { q: "What has legs but doesn't walk?", a: "A table" },
+      { q: "What comes down but never goes up?", a: "Rain" },
+      { q: "What has a neck but no head?", a: "A bottle" },
+      { q: "What is full of holes but still holds water?", a: "A sponge" },
+      { q: "What has cities but no houses, forests but no trees, and rivers but no water?", a: "A map" },
+      { q: "What can you catch but not throw?", a: "A cold" },
+      { q: "What has an eye but cannot see?", a: "A needle" },
+      { q: "What goes up but never comes down?", a: "Your age" },
+      { q: "What has words but never speaks?", a: "A book" },
+      { q: "What can fill a room but takes up no space?", a: "Light" }
+    ];
+    let currentRiddle = null;
+
+    function newRiddle() {
+      currentRiddle = riddles[Math.floor(Math.random() * riddles.length)];
+      document.getElementById('riddleText').textContent = currentRiddle.q;
+      document.getElementById('riddleAnswer').textContent = '';
+    }
+
+    function showRiddleAnswer() {
+      if (currentRiddle) {
+        document.getElementById('riddleAnswer').textContent = "Answer: " + currentRiddle.a;
+      } else {
+        document.getElementById('riddleAnswer').textContent = "Get a riddle first!";
+      }
+    }
+
+    const storyStarters = [
+      "The old lighthouse keeper found a message in a bottle that simply said: \"Don't turn on the light tonight.\"",
+      "Every morning the same cat sat on the same fence. Today it was wearing a tiny hat.",
+      "The elevator stopped between floors. The only other passenger smiled and said, \"Finally, we can talk.\"",
+      "She opened the notebook and found that someone had already written tomorrow's date on the last page.",
+      "The vending machine gave him an extra item. It was a key with no label.",
+      "When the power went out, the only light came from the glowing mushrooms in the garden.",
+      "He followed the trail of sticky notes that led from his desk all the way to the roof.",
+      "The clock on the wall started running backwards at exactly 3:17.",
+      "In the attic they found a radio that only played songs that hadn't been written yet.",
+      "The library book had a library card from a town that didn't exist on any map.",
+      "Every time she drew a door, a real one appeared somewhere in the house the next day.",
+      "The streetlights blinked in a pattern that looked a lot like Morse code.",
+      "He woke up to find that all the mirrors in the house were facing the wrong way.",
+      "The package arrived with no return address and a note that just said \"Open at midnight.\"",
+      "The tree in the backyard had grown a second set of leaves that glowed softly after dark."
+    ];
+
+    function newStory() {
+      const el = document.getElementById('storyText');
+      el.style.opacity = '0';
+      setTimeout(() => {
+        el.textContent = storyStarters[Math.floor(Math.random() * storyStarters.length)];
+        el.style.opacity = '1';
+      }, 180);
     }
 
     function downloadPage() {
@@ -750,13 +1131,6 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-    }
-
-    function downloadDrawing() {
-      const link = document.createElement('a');
-      link.download = 'my-doodle.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
     }
   </script>
 </body>
